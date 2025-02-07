@@ -6,7 +6,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Controller } from "react-hook-form";
 import { cn } from "@/utils/cn";
 
-const Register = () => {
+function Register() {
   const {
     visiblePassword,
     handlevisiblePassword,
@@ -32,8 +32,8 @@ const Register = () => {
           className="w-2/3 lg:w-full"
           src="/images/illustration/login.svg"
           alt="login"
-          width={1024}
-          height={1024}
+          width={300}
+          height={300}
         />
       </div>
       <Card>
@@ -177,6 +177,6 @@ const Register = () => {
       </Card>
     </div>
   );
-};
+}
 
 export default Register;
