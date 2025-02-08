@@ -138,24 +138,24 @@ function Register() {
               )}
             />
             <Controller
-              name="comfirmPassword"
+              name="confirmPassword"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
-                  type={visiblePassword.comfirmPassword ? "text" : "password"}
+                  type={visiblePassword.confirmPassword ? "text" : "password"}
                   label="Password Confirmation"
                   variant="bordered"
                   autoComplete="off"
-                  isInvalid={errors.comfirmPassword !== undefined}
-                  errorMessage={errors.comfirmPassword?.message}
+                  isInvalid={errors.confirmPassword !== undefined}
+                  errorMessage={errors.confirmPassword?.message}
                   endContent={
                     <button
                       className="focus:outline-none "
                       type="button"
-                      onClick={() => handlevisiblePassword("comfirmPassword")}
+                      onClick={() => handlevisiblePassword("confirmPassword")}
                     >
-                      {visiblePassword.comfirmPassword ? (
+                      {visiblePassword.confirmPassword ? (
                         <FaEye className="pointer-events-none text-xl text-default-400 " />
                       ) : (
                         <FaEyeSlash className="pointer-events-none text-xl text-default-400" />

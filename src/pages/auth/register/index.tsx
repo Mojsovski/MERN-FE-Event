@@ -1,4 +1,4 @@
-import Register from "@/components/views/Register/Register";
+import Register from "@/components/views/Auth/Register/Register";
 import AuthLayout from "@/components/layouts/AuthLayout";
 
 function RegisterPage() {

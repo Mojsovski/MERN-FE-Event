@@ -16,7 +16,7 @@ function RegisterSuccess() {
           />
           <Image
             // className="w-2/3 lg:w-full"
-            src="/images/illustration/success.svg"
+            src="/images/illustration/email-send.svg"
             alt="success"
             width={300}
             height={300}

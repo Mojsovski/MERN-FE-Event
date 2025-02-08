@@ -3,7 +3,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IRegister } from "@/types/Auth";
-import authServices from "@/services/auth";
+import authServices from "@/services/auth.service";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 
@@ -18,7 +18,7 @@ const registerSchema = yup.object().shape({
     .string()
     .min(8, "Minimal 8 Character")
     .required("Please input your password"),
-  comfirmPassword: yup
+  confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), ""], "Password not match")
     .required("Please input your password confirmation"),
@@ -30,10 +30,10 @@ const useRegister = () => {
   // visible password on register page
   const [visiblePassword, setVisiblePassword] = useState({
     password: false,
-    comfirmPassword: false,
+    confirmPassword: false,
   });
 
-  const handlevisiblePassword = (key: "password" | "comfirmPassword") => {
+  const handlevisiblePassword = (key: "password" | "confirmPassword") => {
     setVisiblePassword({
       ...visiblePassword,
       [key]: !visiblePassword[key],

@@ -3,7 +3,11 @@ interface IRegister {
   userName: string;
   email: string;
   password: string;
-  comfirmPassword: string;
+  confirmPassword: string;
 }
 
-export type { IRegister };
+interface IActivation {
+  code: string;
+}
+
+export type { IRegister, IActivation };
