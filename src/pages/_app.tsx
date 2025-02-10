@@ -27,12 +27,7 @@ export default function App({
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
         <HeroUIProvider>
-          <main
-            className={cn(
-              inter.className,
-              "py-10 lg:py-0 flex flex-col min-h-screen min-w-full items-center justify-center gap-10"
-            )}
-          >
+          <main className={cn(inter.className)}>
             <Component {...pageProps} />
           </main>
         </HeroUIProvider>
