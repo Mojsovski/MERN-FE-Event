@@ -1,7 +1,6 @@
 import {
   CiBookmark,
   CiGrid41,
-  CiSettings,
   CiShoppingTag,
   CiViewList,
   CiWallet,

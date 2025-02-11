@@ -39,7 +39,7 @@ function Login() {
           <div className="">
             <h2 className="text-xl font-bold text-danger-500">Login</h2>
             <p className="text-small">
-              Don't have an account?&nbsp;
+              Don't have an account? &nbsp;
               <Link
                 className="font-semibold text-danger-400"
                 href="/auth/register"

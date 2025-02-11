@@ -1,5 +1,3 @@
-import Image from "next/image";
-import localFont from "next/font/local";
 import { Slider } from "@heroui/react";
 import PageHead from "@/components/commons/PageHead";
 

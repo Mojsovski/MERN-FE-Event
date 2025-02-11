@@ -1,4 +1,3 @@
-import NextAuthfrom from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import env from "@/config/env";
 import { JWTExtended, SessionExtended, UserExtended } from "@/types/Auth";
