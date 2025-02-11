@@ -4,6 +4,7 @@ import authServices from "@/services/auth.service";
 
 interface IProps {
   status: "success" | "failed";
+  error?: string;
 }
 
 function ActivationPage(props: IProps) {
@@ -33,13 +34,12 @@ export async function getServerSideProps(context: { query: { code: string } }) {
       };
     }
   } catch (error) {
-    {
-      return {
-        props: {
-          status: "failed",
-        },
-      };
-    }
+    return {
+      props: {
+        status: "failed",
+        error: (error as Error).message,
+      },
+    };
   }
 }
 
