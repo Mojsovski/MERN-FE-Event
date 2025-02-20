@@ -1,16 +1,12 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import Dashboard from "@/components/views/Admin/Dashboard";
 
-function AdminDashboardPage() {
+function BannerAdminPage() {
   return (
-    <DashboardLayout
-      title="Dashboard"
-      description="Dashboard Admin"
-      type="admin"
-    >
+    <DashboardLayout title="Banner" description="Banner Admin" type="admin">
       <Dashboard />
     </DashboardLayout>
   );
 }
 
-export default AdminDashboardPage;
+export default BannerAdminPage;

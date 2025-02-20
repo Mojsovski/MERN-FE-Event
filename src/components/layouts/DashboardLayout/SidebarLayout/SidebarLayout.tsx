@@ -2,7 +2,9 @@ import { cn } from "@/utils/cn";
 import { Button, Listbox, ListboxItem } from "@heroui/react";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { JSX } from "react";
 import { CiLogout } from "react-icons/ci";
 
 interface ISidebarItem {
@@ -48,12 +50,14 @@ function SidebarLayout(props: IProps) {
             <ListboxItem
               key={item.key}
               className={cn("my-1 h-12 text-2xl", {
-                "bg-danger text-white": router.pathname.startsWith(item.href),
+                "bg-danger text-white": router.pathname === item.href,
               })}
               startContent={item.icon}
               textValue={item.label}
               aria-labelledby={item.label}
               aria-describedby={item.label}
+              as={Link}
+              href={item.href}
             >
               <p className="text-small">{item.label}</p>
             </ListboxItem>
