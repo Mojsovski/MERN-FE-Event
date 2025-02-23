@@ -6,12 +6,12 @@ import {
   DropdownTrigger,
   Button,
 } from "@heroui/react";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { ReactNode, useCallback, Key, useEffect } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { COLUMN_LIST_CATEGORY } from "./Category.constans";
 import useCategory from "./useCategory";
+import InputFile from "@/components/ui/InputFile";
 
 function Category() {
   const { push, isReady, query } = useRouter();
@@ -96,6 +96,7 @@ function Category() {
           data={dataCategory?.data || []}
         />
       )}
+      <InputFile name="input" isDropable />
     </section>
   );
 }
