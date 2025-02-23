@@ -50,7 +50,7 @@ function SidebarLayout(props: IProps) {
             <ListboxItem
               key={item.key}
               className={cn("my-1 h-12 text-2xl", {
-                "bg-danger text-white": router.pathname === item.href,
+                "bg-danger text-white": router.pathname.startsWith(item.href),
               })}
               startContent={item.icon}
               textValue={item.label}

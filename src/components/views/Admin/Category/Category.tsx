@@ -8,22 +8,41 @@ import {
 } from "@heroui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ReactNode, useCallback, Key } from "react";
+import { ReactNode, useCallback, Key, useEffect } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { COLUMN_LIST_CATEGORY } from "./Category.constans";
-import { LIMIT_LISTS } from "@/constants/list.constants";
+import useCategory from "./useCategory";
 
 function Category() {
-  const { push } = useRouter();
+  const { push, isReady, query } = useRouter();
+  const {
+    setURL,
+    dataCategory,
+    isLoadingCategory,
+    currentPage,
+    currentLimit,
+    isRefetchingCategory,
+    handheChangePage,
+    handheChangeLimit,
+    handleSearch,
+    handleClearSearch,
+  } = useCategory();
+
+  useEffect(() => {
+    if (isReady) {
+      setURL();
+    }
+  }, [isReady]);
+
   const renderCell = useCallback(
     (category: Record<string, unknown>, columnKey: Key) => {
       const cellValue = category[columnKey as keyof typeof category];
 
       switch (columnKey) {
-        case "icon":
-          return (
-            <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
-          );
+        // case "icon":
+        //   return (
+        //     <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
+        //   );
 
         case "actions":
           return (
@@ -59,28 +78,24 @@ function Category() {
 
   return (
     <section>
-      <DataTable
-        buttonTopContentLabel="Create Category"
-        renderCell={renderCell}
-        columns={COLUMN_LIST_CATEGORY}
-        onChangeSearch={() => {}}
-        onClearSearch={() => {}}
-        onClickButtonTopContent={() => {}}
-        onChangeLimit={() => {}}
-        onChangePage={() => {}}
-        currentPage={1}
-        totalPages={2}
-        limit={LIMIT_LISTS[0].label}
-        emptyContent="Category is empty"
-        data={[
-          {
-            _id: "123",
-            name: "Category 1",
-            description: "Description 1",
-            icon: "/images/general/logo.png",
-          },
-        ]}
-      />
+      {Object.keys(query).length > 0 && (
+        <DataTable
+          isLoading={isLoadingCategory || isRefetchingCategory}
+          buttonTopContentLabel="Create Category"
+          renderCell={renderCell}
+          columns={COLUMN_LIST_CATEGORY}
+          onChangeSearch={handleSearch}
+          onClearSearch={handleClearSearch}
+          onClickButtonTopContent={() => {}}
+          onChangeLimit={handheChangeLimit}
+          onChangePage={handheChangePage}
+          currentPage={Number(currentPage)}
+          totalPages={dataCategory?.pagination.totalPages}
+          limit={String(currentLimit)}
+          emptyContent="Category is empty"
+          data={dataCategory?.data || []}
+        />
+      )}
     </section>
   );
 }
