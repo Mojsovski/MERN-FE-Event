@@ -4,7 +4,7 @@ interface IProps {
   title?: string;
 }
 
-const PageHead = (props: IProps) => {
+function PageHead(props: IProps) {
   const { title = "Acara" } = props;
   return (
     <Head>
@@ -14,6 +14,6 @@ const PageHead = (props: IProps) => {
       <link rel="icon" href="/images/general/logo.svg" type="image/x-icon" />
     </Head>
   );
-};
+}
 
 export default PageHead;
