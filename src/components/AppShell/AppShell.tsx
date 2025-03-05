@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
-import { ReactNode, useContext, useEffect } from "react";
+// import { ReactNode, useContext, useEffect } from "react";
+import { ReactNode } from "react";
 import { cn } from "@/utils/cn";
 // import Toaster from "../ui/Toaster";
 // import { defaultToaster, ToasterContext } from "@/contexts/ToasterContext";
