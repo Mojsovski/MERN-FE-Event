@@ -35,7 +35,7 @@ const useAddCategoryModal = () => {
 
   const preview = watch("icon");
 
-  // handle media
+  // handle upload category icon
   const handleUploadIcon = (
     files: FileList,
     onChange: (files: FileList | undefined) => void
@@ -51,6 +51,7 @@ const useAddCategoryModal = () => {
     }
   };
 
+  // handle delete category icon
   const handleDeleteIcon = (
     onChange: (files: FileList | undefined) => void
   ) => {
@@ -118,6 +119,9 @@ const useAddCategoryModal = () => {
     preview,
     handleUploadIcon,
     isPendingMutateUploadFile,
+    handleDeleteIcon,
+    isPendingMutateDeleteFile,
+    handleOnClose,
   };
 };
 

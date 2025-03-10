@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { addToast } from "@heroui/react";
 
 const useMediaHandling = () => {
+  // upload  category icon
   const uploadIcon = async (
     file: File,
     callback: (fileUrl: string) => void
@@ -32,6 +33,7 @@ const useMediaHandling = () => {
       },
     });
 
+  // delete category icon
   const deleteIcon = async (fileUrl: string, callback: () => void) => {
     const res = await uploadServices.deleteFile({ fileUrl });
     if (res.data.meta.status === 200) {
