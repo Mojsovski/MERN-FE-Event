@@ -1,5 +1,5 @@
 interface IFileURL {
-  FileUrl: string;
+  fileUrl: string;
 }
 
 export { IFileURL };

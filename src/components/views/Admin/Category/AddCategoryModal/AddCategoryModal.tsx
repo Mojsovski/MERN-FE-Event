@@ -12,27 +12,40 @@ import {
 import useAddCategoryModal from "./useAddCategoryModal";
 import { Controller } from "react-hook-form";
 import InputFile from "@/components/ui/InputFile";
+import { useEffect } from "react";
 
 interface IProps {
   isOpen: boolean;
   onClose: () => void;
+  refetchCategory: () => void;
+  onOpenChange: () => void;
 }
 
 const AddCategoryModal = (props: IProps) => {
-  const { isOpen, onClose } = props;
+  const { isOpen, onClose, refetchCategory, onOpenChange } = props;
   const {
     control,
     errors,
     reset,
     handleAddCategory,
     handleSubmitForm,
+    handleUploadIcon,
     isPendingMutateAddCategory,
-    isPendingmutateAddFIle,
     isSuccessMutateAddCategory,
+    isPendingMutateUploadFile,
+    preview,
   } = useAddCategoryModal();
+
+  useEffect(() => {
+    if (isSuccessMutateAddCategory) {
+      onClose();
+      refetchCategory();
+    }
+  }, [isSuccessMutateAddCategory]);
 
   return (
     <Modal
+      onOpenChange={onOpenChange}
       isOpen={isOpen}
       placement="center"
       scrollBehavior="inside"
@@ -81,11 +94,12 @@ const AddCategoryModal = (props: IProps) => {
                 render={({ field: { onChange, value, ...field } }) => (
                   <InputFile
                     {...field}
-                    onChange={(e) => {
-                      onChange(e.currentTarget.files);
-                    }}
+                    onUpload={(files) => handleUploadIcon(files, onChange)}
+                    isUploading={isPendingMutateUploadFile}
                     isInvalid={errors.icon !== undefined}
                     errorMessage={errors.icon?.message}
+                    isDropable
+                    preview={typeof preview === "string" ? preview : ""}
                   />
                 )}
               />
@@ -96,16 +110,16 @@ const AddCategoryModal = (props: IProps) => {
               color="danger"
               variant="flat"
               onPress={onClose}
-              disabled={isPendingMutateAddCategory || isPendingmutateAddFIle}
+              disabled={isPendingMutateAddCategory || isPendingMutateUploadFile}
             >
               Cancel
             </Button>
             <Button
               color="danger"
               type="submit"
-              disabled={isPendingMutateAddCategory || isPendingmutateAddFIle}
+              disabled={isPendingMutateAddCategory || isPendingMutateUploadFile}
             >
-              {isPendingMutateAddCategory || isPendingmutateAddFIle ? (
+              {isPendingMutateAddCategory || isPendingMutateUploadFile ? (
                 <Spinner size="sm" color="white" />
               ) : (
                 "Create Category"

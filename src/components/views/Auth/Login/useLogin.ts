@@ -21,7 +21,6 @@ const useLogin = () => {
 
   // visible password on register page
   const [visiblePassword, setVisiblePassword] = useState(false);
-
   const toggleVisiblePassword = () => {
     setVisiblePassword(!visiblePassword);
   };
@@ -66,18 +65,16 @@ const useLogin = () => {
     },
     onSuccess: () => {
       reset();
-      router.push(callbackUrl);
-
-      // setToaster({
-      //   type: "success",
-      //   message: "Login success",
-      // });
-
       addToast({
         color: "success",
         title: "Success",
         description: "Login successfully",
       });
+      router.push(callbackUrl);
+      // setToaster({
+      //   type: "success",
+      //   message: "Login success",
+      // });
     },
   });
 

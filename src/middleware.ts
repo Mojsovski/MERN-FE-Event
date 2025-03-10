@@ -19,16 +19,6 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // if (pathname === "/auth/login" || pathname === "/auth/register") {
-  //   if (token && token?.user?.role == "member") {
-  //     return NextResponse.redirect(new URL("/member", request.url));
-  //   }
-
-  //   if (token && token?.user?.role == "admin") {
-  //     return NextResponse.redirect(new URL("/admin", request.url));
-  //   }
-  // }
-
   // admin
   if (pathname.startsWith("/admin")) {
     if (!token) {

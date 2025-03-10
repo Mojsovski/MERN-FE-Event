@@ -1,12 +1,12 @@
 import { DELAY, LIMIT_DEFAULT, PAGE_DEFAULT } from "@/constants/list.constants";
-import useDeboundce from "@/hooks/useDebounce";
+import useDebounce from "@/hooks/useDebounce";
 import categoryServices from "@/services/category.service";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { ChangeEvent } from "react";
 
 const useCategory = () => {
-  const debounce = useDeboundce();
+  const debounce = useDebounce();
   const router = useRouter();
   const currentLimit = router.query.limit;
   const currentPage = router.query.page;
@@ -43,7 +43,7 @@ const useCategory = () => {
     enabled: router.isReady && !!currentPage && !!currentLimit,
   });
 
-  const handheChangePage = (page: number) => {
+  const handleChangePage = (page: number) => {
     router.push({
       query: {
         ...router.query,
@@ -52,7 +52,7 @@ const useCategory = () => {
     });
   };
 
-  const handheChangeLimit = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeLimit = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedLimit = e.target.value;
     router.push({
       query: {
@@ -96,8 +96,8 @@ const useCategory = () => {
     currentPage,
     currentLimit,
     currentSearch,
-    handheChangePage,
-    handheChangeLimit,
+    handleChangePage,
+    handleChangeLimit,
     handleSearch,
     handleClearSearch,
   };

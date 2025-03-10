@@ -12,7 +12,6 @@ import { ReactNode, useCallback, Key, useEffect } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { COLUMN_LIST_CATEGORY } from "./Category.constans";
 import useCategory from "./useCategory";
-import InputFile from "@/components/ui/InputFile";
 import AddCategoryModal from "./AddCategoryModal";
 
 function Category() {
@@ -24,8 +23,10 @@ function Category() {
     currentPage,
     currentLimit,
     isRefetchingCategory,
-    handheChangePage,
-    handheChangeLimit,
+    refetchCategory,
+
+    handleChangePage,
+    handleChangeLimit,
     handleSearch,
     handleClearSearch,
   } = useCategory();
@@ -84,23 +85,26 @@ function Category() {
     <section>
       {Object.keys(query).length > 0 && (
         <DataTable
-          isLoading={isLoadingCategory || isRefetchingCategory}
           buttonTopContentLabel="Create Category"
-          renderCell={renderCell}
+          currentPage={Number(currentPage)}
           columns={COLUMN_LIST_CATEGORY}
+          data={dataCategory?.data || []}
+          emptyContent="Category is empty"
+          isLoading={isLoadingCategory || isRefetchingCategory}
+          limit={String(currentLimit)}
           onChangeSearch={handleSearch}
           onClearSearch={handleClearSearch}
           onClickButtonTopContent={addCategoryModal.onOpen}
-          onChangeLimit={handheChangeLimit}
-          onChangePage={handheChangePage}
-          currentPage={Number(currentPage)}
+          onChangeLimit={handleChangeLimit}
+          onChangePage={handleChangePage}
+          renderCell={renderCell}
           totalPages={dataCategory?.pagination.totalPages}
-          limit={String(currentLimit)}
-          emptyContent="Category is empty"
-          data={dataCategory?.data || []}
         />
       )}
-      <AddCategoryModal {...addCategoryModal} />
+      <AddCategoryModal
+        refetchCategory={refetchCategory}
+        {...addCategoryModal}
+      />
     </section>
   );
 }

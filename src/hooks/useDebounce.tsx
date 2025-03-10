@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-const useDeboundce = () => {
+const useDebounce = () => {
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const debounce = (func: Function, delay: number) => {
@@ -10,7 +10,8 @@ const useDeboundce = () => {
       debounceTimeout.current = null;
     }, delay);
   };
+
   return debounce;
 };
 
-export default useDeboundce;
+export default useDebounce;
