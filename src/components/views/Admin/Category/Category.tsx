@@ -13,6 +13,8 @@ import { CiMenuKebab } from "react-icons/ci";
 import { COLUMN_LIST_CATEGORY } from "./Category.constans";
 import useCategory from "./useCategory";
 import AddCategoryModal from "./AddCategoryModal";
+import DeleteCategoryModal from "./DeleteCategoryModal";
+import Image from "next/image";
 
 function Category() {
   const { push, isReady, query } = useRouter();
@@ -29,9 +31,13 @@ function Category() {
     handleChangeLimit,
     handleSearch,
     handleClearSearch,
+
+    selectedId,
+    setSelectedId,
   } = useCategory();
 
   const addCategoryModal = useDisclosure();
+  const deleteCategoryModal = useDisclosure();
 
   useEffect(() => {
     if (isReady) {
@@ -44,10 +50,10 @@ function Category() {
       const cellValue = category[columnKey as keyof typeof category];
 
       switch (columnKey) {
-        // case "icon":
-        //   return (
-        //     <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
-        //   );
+        case "icon":
+          return (
+            <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
+          );
 
         case "actions":
           return (
@@ -67,7 +73,10 @@ function Category() {
                 <DropdownItem
                   key="delete-category"
                   className="text-danger-500"
-                  onPress={() => push(`/admin/category/${category._id}`)}
+                  onPress={() => {
+                    setSelectedId(`${category._id}`);
+                    deleteCategoryModal.onOpen();
+                  }}
                 >
                   Delete Category
                 </DropdownItem>
@@ -104,6 +113,12 @@ function Category() {
       <AddCategoryModal
         refetchCategory={refetchCategory}
         {...addCategoryModal}
+      />
+      <DeleteCategoryModal
+        refetchCategory={refetchCategory}
+        {...deleteCategoryModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
       />
     </section>
   );
