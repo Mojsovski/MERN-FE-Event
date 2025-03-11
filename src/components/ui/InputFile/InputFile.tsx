@@ -1,7 +1,7 @@
 import { cn } from "@/utils/cn";
 import { Button, Spinner } from "@heroui/react";
 import Image from "next/image";
-import { ChangeEvent, useEffect, useId, useRef } from "react";
+import { ChangeEvent, ReactNode, useEffect, useId, useRef } from "react";
 import { CiSaveUp2, CiTrash } from "react-icons/ci";
 
 interface IProps {
@@ -15,6 +15,7 @@ interface IProps {
   onUpload?: (files: FileList) => void;
   onDelete?: () => void;
   preview?: string;
+  label?: ReactNode;
 }
 
 const InputFile = (props: IProps) => {
@@ -29,6 +30,7 @@ const InputFile = (props: IProps) => {
     onUpload,
     onDelete,
     preview,
+    label,
   } = props;
   const drop = useRef<HTMLLabelElement>(null);
   const dropzoneId = useId();
@@ -70,6 +72,7 @@ const InputFile = (props: IProps) => {
 
   return (
     <div>
+      {label}
       <label
         ref={drop}
         htmlFor={`dropzone-file-${dropzoneId}`}
