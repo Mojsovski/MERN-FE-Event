@@ -1,12 +1,16 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
-import Dashboard from "@/components/views/Admin/Dashboard";
+import Event from "@/components/views/Admin/Event";
 
-function EventAdminPage() {
+function AdminEventPage() {
   return (
-    <DashboardLayout title="Event" description="Event Admin" type="admin">
-      <Dashboard />
+    <DashboardLayout
+      title="Event"
+      description="List of all event, create new event, and manage existing event"
+      type="admin"
+    >
+      <Event />
     </DashboardLayout>
   );
 }
 
-export default EventAdminPage;
+export default AdminEventPage;
