@@ -20,6 +20,7 @@ import InputFile from "@/components/ui/InputFile";
 import { useEffect } from "react";
 import { ICategory } from "@/types/Category";
 import { IRegency } from "@/types/Event";
+import { getLocalTimeZone, now } from "@internationalized/date";
 
 interface IProps {
   isOpen: boolean;
@@ -135,6 +136,7 @@ const AddEventModal = (props: IProps) => {
                       {...field}
                       hideTimeZone
                       showMonthAndYearPickers
+                      defaultValue={now(getLocalTimeZone())}
                       label="Start Date"
                       variant="bordered"
                       isInvalid={errors.startDate !== undefined}
@@ -150,6 +152,7 @@ const AddEventModal = (props: IProps) => {
                       {...field}
                       hideTimeZone
                       showMonthAndYearPickers
+                      defaultValue={now(getLocalTimeZone())}
                       label="End Date"
                       variant="bordered"
                       isInvalid={errors.endDate !== undefined}
@@ -158,23 +161,19 @@ const AddEventModal = (props: IProps) => {
                   )}
                 />
                 <Controller
-                  name="isPublished"
+                  name="isPublish"
                   control={control}
                   render={({ field }) => (
                     <Select
                       {...field}
                       label="Status"
                       variant="bordered"
-                      isInvalid={errors.isPublished !== undefined}
-                      errorMessage={errors.isPublished?.message}
+                      isInvalid={errors.isPublish !== undefined}
+                      errorMessage={errors.isPublish?.message}
                       disallowEmptySelection
                     >
-                      <SelectItem key="true" textValue="true">
-                        Publish
-                      </SelectItem>
-                      <SelectItem key="false" textValue="false">
-                        Draft
-                      </SelectItem>
+                      <SelectItem key="true">Publish</SelectItem>
+                      <SelectItem key="false">Draft</SelectItem>
                     </Select>
                   )}
                 />
@@ -190,12 +189,25 @@ const AddEventModal = (props: IProps) => {
                       errorMessage={errors.isFeatured?.message}
                       disallowEmptySelection
                     >
-                      <SelectItem key="true" textValue="true">
-                        Yes
-                      </SelectItem>
-                      <SelectItem key="false" textValue="false">
-                        No
-                      </SelectItem>
+                      <SelectItem key="true">Yes</SelectItem>
+                      <SelectItem key="false">No</SelectItem>
+                    </Select>
+                  )}
+                />
+                <Controller
+                  name="isOnline"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      label="Online / Offline"
+                      variant="bordered"
+                      isInvalid={errors.isOnline !== undefined}
+                      errorMessage={errors.isOnline?.message}
+                      disallowEmptySelection
+                    >
+                      <SelectItem key="true">Online</SelectItem>
+                      <SelectItem key="false">Offline</SelectItem>
                     </Select>
                   )}
                 />
@@ -245,7 +257,7 @@ const AddEventModal = (props: IProps) => {
                 <Controller
                   name="latitude"
                   control={control}
-                  render={({ field: { onChange, ...field } }) => (
+                  render={({ field }) => (
                     <Input
                       {...field}
                       label="Latitude"
@@ -258,7 +270,7 @@ const AddEventModal = (props: IProps) => {
                 <Controller
                   name="longitude"
                   control={control}
-                  render={({ field: { onChange, ...field } }) => (
+                  render={({ field }) => (
                     <Input
                       {...field}
                       label="Longitude"

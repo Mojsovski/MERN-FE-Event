@@ -3,9 +3,11 @@ import useDebounce from "@/hooks/useDebounce";
 import useMediaHandling from "@/hooks/useMediaHandling";
 import categoryServices from "@/services/category.service";
 import eventServices from "@/services/event.service";
-import { ICategory } from "@/types/Category";
+import { IEvent, IEventForm } from "@/types/Event";
+import { toDateStandard } from "@/utils/date";
 import { addToast, DateValue } from "@heroui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { getLocalTimeZone, now } from "@internationalized/date";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -18,7 +20,7 @@ const schema = yup.object().shape({
   category: yup.string().required("Please select category"),
   startDate: yup.mixed<DateValue>().required("Please select start date"),
   endDate: yup.mixed<DateValue>().required("Please select end date"),
-  isPublished: yup.string().required("Please select status"),
+  isPublish: yup.string().required("Please select status"),
   isFeatured: yup.string().required("Please select featured"),
   isOnline: yup.string().required("Please select online or offline "),
   description: yup.string().required("Please input description"),
@@ -52,6 +54,9 @@ const useAddCategoryModal = () => {
 
   const preview = watch("banner");
   const fileUrl = getValues("banner");
+
+  setValue("startDate", now(getLocalTimeZone()));
+  setValue("endDate", now(getLocalTimeZone()));
 
   // handle upload banner event
   const handleUploadBanner = (
@@ -101,8 +106,8 @@ const useAddCategoryModal = () => {
     debounce(() => setSearchRegency(region), DELAY);
   };
 
-  const addEvent = async (payload: ICategory) => {
-    const res = await categoryServices.addCategory(payload);
+  const addEvent = async (payload: IEvent) => {
+    const res = await eventServices.addEvent(payload);
     return res;
   };
 
@@ -129,7 +134,22 @@ const useAddCategoryModal = () => {
     },
   });
 
-  const handleAddEvent = (data: ICategory) => mutateAddEvent(data);
+  const handleAddEvent = (data: IEventForm) => {
+    const payload = {
+      ...data,
+      isFeatured: Boolean(data.isFeatured),
+      isPublish: Boolean(data.isPublish),
+      isOnline: Boolean(data.isOnline),
+      startDate: toDateStandard(data.startDate),
+      endDate: toDateStandard(data.endDate),
+      location: {
+        region: data.region,
+        coordinates: [Number(data.latitude), Number(data.longitude)],
+      },
+      banner: data.banner,
+    };
+    mutateAddEvent(payload);
+  };
 
   return {
     control,
