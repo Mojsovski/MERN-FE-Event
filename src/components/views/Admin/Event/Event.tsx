@@ -1,22 +1,13 @@
 import DataTable from "@/components/ui/DataTable/DataTable";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-  Button,
-  useDisclosure,
-  Chip,
-} from "@heroui/react";
+import { useDisclosure, Chip } from "@heroui/react";
 import { useRouter } from "next/router";
 import { ReactNode, useCallback, Key, useEffect } from "react";
-
 import { COLUMN_LIST_EVENT } from "./Event.constans";
 import useEvent from "./useEvent";
-
 import Image from "next/image";
 import useChangeUrl from "@/hooks/useChangeUrl";
 import DropdownAction from "@/components/commons/DropdownAction";
+import AddEventModal from "./AddEventModal";
 
 function Event() {
   const { push, query, isReady } = useRouter();
@@ -99,6 +90,13 @@ function Event() {
           totalPages={dataEvents?.pagination.totalPages}
         />
       )}
+      <AddEventModal refetchEvents={refetchEvents} {...addEventModal} />
+      {/* <DeleteCategoryModal
+        refetchCategory={refetchCategory}
+        {...deleteCategoryModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
+      /> */}
     </section>
   );
 }
