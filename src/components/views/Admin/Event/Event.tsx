@@ -8,6 +8,7 @@ import Image from "next/image";
 import useChangeUrl from "@/hooks/useChangeUrl";
 import DropdownAction from "@/components/commons/DropdownAction";
 import AddEventModal from "./AddEventModal";
+import DeleteEventModal from "./DeleteEventModal";
 
 function Event() {
   const { push, query, isReady } = useRouter();
@@ -91,12 +92,12 @@ function Event() {
         />
       )}
       <AddEventModal refetchEvents={refetchEvents} {...addEventModal} />
-      {/* <DeleteCategoryModal
-        refetchCategory={refetchCategory}
-        {...deleteCategoryModal}
+      <DeleteEventModal
+        refetchEvents={refetchEvents}
+        {...deleteEventModal}
         selectedId={selectedId}
         setSelectedId={setSelectedId}
-      /> */}
+      />
     </section>
   );
 }
