@@ -9,7 +9,6 @@ import { addToast, DateValue } from "@heroui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getLocalTimeZone, now } from "@internationalized/date";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -22,24 +21,23 @@ const schema = yup.object().shape({
   endDate: yup.mixed<DateValue>().required("Please select end date"),
   isPublish: yup.string().required("Please select status"),
   isFeatured: yup.string().required("Please select featured"),
-  isOnline: yup.string().required("Please select online or offline "),
   description: yup.string().required("Please input description"),
+  isOnline: yup.string().required("Please select online or offline"),
   region: yup.string().required("Please select region"),
-  banner: yup.mixed<FileList | string>().required("Please input banner"),
+  longitude: yup.string().required("Please input longitude coordinate"),
   latitude: yup.string().required("Please select latitude coordinate"),
-  longitude: yup.string().required("Please select longitude coordinate"),
+  banner: yup.mixed<FileList | string>().required("Please input banner"),
 });
 
 const useAddCategoryModal = () => {
   const debounce = useDebounce();
-  const router = useRouter();
   const {
     isPendingMutateUploadFile,
     isPendingMutateDeleteFile,
-
     handleUploadFile,
     handleDeleteFile,
   } = useMediaHandling();
+
   const {
     control,
     handleSubmit: handleSubmitForm,
@@ -140,10 +138,10 @@ const useAddCategoryModal = () => {
       isFeatured: Boolean(data.isFeatured),
       isPublish: Boolean(data.isPublish),
       isOnline: Boolean(data.isOnline),
-      startDate: toDateStandard(data.startDate),
-      endDate: toDateStandard(data.endDate),
+      startDate: data.startDate ? toDateStandard(data.startDate) : "",
+      endDate: data.endDate ? toDateStandard(data.endDate) : "",
       location: {
-        region: data.region,
+        region: `${data.region}`,
         coordinates: [Number(data.latitude), Number(data.longitude)],
       },
       banner: data.banner,

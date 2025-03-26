@@ -2,16 +2,46 @@ import { Tabs, Tab } from "@heroui/react";
 import CoverTab from "./CoverTab";
 import InfoTab from "./InfoTab";
 import useDetailEvent from "./useDetailEvent";
+import LocationTab from "./LocationTab/LocationTab";
 
 function DetailEvent() {
-  const { dataEvent } = useDetailEvent();
+  const {
+    dataEvent,
+    dataDefaultRegion,
+    handleUpdateEvent,
+    handleUpdateInfo,
+    handleUpdateLocation,
+    isPendingDefaultRegion,
+    isPendingMutateUpdateEvent,
+    isSuccessMutateUpdateEvent,
+  } = useDetailEvent();
   return (
     <Tabs aria-label="Option">
-      <Tab key="icon" title="Icon">
-        <CoverTab currentIcon={dataEvent?.icon} />
+      <Tab key="cover" title="Cover">
+        <CoverTab
+          currentCover={dataEvent?.banner}
+          onUpdate={handleUpdateEvent}
+          isPendingUpdate={isPendingMutateUpdateEvent}
+          isSuccessUpdate={isSuccessMutateUpdateEvent}
+        />
       </Tab>
       <Tab key="info" title="Info">
-        <InfoTab dataEvent={dataEvent} />
+        <InfoTab
+          dataEvent={dataEvent}
+          onUpdate={handleUpdateInfo}
+          isPendingUpdate={isPendingMutateUpdateEvent}
+          isSuccessUpdate={isSuccessMutateUpdateEvent}
+        />
+      </Tab>
+      <Tab key="location" title="Location">
+        <LocationTab
+          dataEvent={dataEvent}
+          dataDefaultRegion={dataDefaultRegion?.data?.data[0]?.name}
+          onUpdate={handleUpdateLocation}
+          isPendingDefaultRegion={isPendingDefaultRegion}
+          isPendingUpdate={isPendingMutateUpdateEvent}
+          isSuccessUpdate={isSuccessMutateUpdateEvent}
+        />
       </Tab>
     </Tabs>
   );

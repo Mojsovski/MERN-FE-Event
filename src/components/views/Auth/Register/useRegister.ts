@@ -49,7 +49,6 @@ const useRegister = () => {
     control,
     handleSubmit,
     formState: { errors },
-    setError,
     reset,
   } = useForm({
     resolver: yupResolver(registerSchema),

@@ -32,7 +32,6 @@ const useLogin = () => {
     control,
     handleSubmit,
     formState: { errors },
-    setError,
     reset,
   } = useForm({
     resolver: yupResolver(loginSchema),

@@ -134,11 +134,10 @@ const AddEventModal = (props: IProps) => {
                   render={({ field }) => (
                     <DatePicker
                       {...field}
-                      hideTimeZone
-                      showMonthAndYearPickers
-                      defaultValue={now(getLocalTimeZone())}
                       label="Start Date"
                       variant="bordered"
+                      hideTimeZone
+                      showMonthAndYearPickers
                       isInvalid={errors.startDate !== undefined}
                       errorMessage={errors.startDate?.message}
                     />
@@ -150,11 +149,10 @@ const AddEventModal = (props: IProps) => {
                   render={({ field }) => (
                     <DatePicker
                       {...field}
-                      hideTimeZone
-                      showMonthAndYearPickers
-                      defaultValue={now(getLocalTimeZone())}
                       label="End Date"
                       variant="bordered"
+                      hideTimeZone
+                      showMonthAndYearPickers
                       isInvalid={errors.endDate !== undefined}
                       errorMessage={errors.endDate?.message}
                     />

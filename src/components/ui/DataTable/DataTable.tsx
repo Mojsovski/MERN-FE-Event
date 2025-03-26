@@ -15,7 +15,7 @@ import {
   TableHeader,
   TableRow,
 } from "@heroui/react";
-import { ReactNode, Key, useMemo, ChangeEvent } from "react";
+import { ReactNode, Key, useMemo } from "react";
 import { CiSearch } from "react-icons/ci";
 
 interface IProps {
