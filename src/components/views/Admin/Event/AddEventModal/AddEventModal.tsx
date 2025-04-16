@@ -253,6 +253,19 @@ const AddEventModal = (props: IProps) => {
                   )}
                 />
                 <Controller
+                  name="address"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      label="Address"
+                      variant="bordered"
+                      isInvalid={errors.address !== undefined}
+                      errorMessage={errors.address?.message}
+                    />
+                  )}
+                />
+                <Controller
                   name="latitude"
                   control={control}
                   render={({ field }) => (

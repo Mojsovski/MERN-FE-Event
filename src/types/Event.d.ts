@@ -19,11 +19,13 @@ interface IEvent {
   location?: {
     region: string;
     coordinates: number[];
+    address: string;
   };
   banner?: string | FileList;
 }
 
 interface IEventForm extends IEvent {
+  address?: string;
   region?: string;
   startDate?: DateValue;
   endDate?: DateValue;

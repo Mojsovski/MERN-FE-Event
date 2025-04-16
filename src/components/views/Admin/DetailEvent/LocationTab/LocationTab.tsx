@@ -10,16 +10,12 @@ import {
   Spinner,
   Autocomplete,
   AutocompleteItem,
-  DatePicker,
   Select,
   SelectItem,
 } from "@heroui/react";
 import useLocationTab from "./useLocationTab";
 import { Controller } from "react-hook-form";
 import { useEffect } from "react";
-import { ICategory } from "@/types/Category";
-// import { getLocalTimeZone, now } from "@internationalized/date";
-import { toInputDate } from "@/utils/date";
 
 interface IProps {
   dataEvent: IEventForm;
@@ -53,6 +49,7 @@ const LocationTab = (props: IProps) => {
   useEffect(() => {
     if (dataEvent) {
       setValueUpdateLocation("isOnline", `${dataEvent?.isOnline}`);
+      setValueUpdateLocation("address", `${dataEvent?.location?.address}`);
       setValueUpdateLocation("region", `${dataEvent?.location?.region}`);
       setValueUpdateLocation(
         "latitude",
@@ -86,6 +83,26 @@ const LocationTab = (props: IProps) => {
           className="flex flex-col gap-4"
           onSubmit={handleSubmitUpdateLocation(onUpdate)}
         >
+          <Skeleton
+            isLoaded={!!dataEvent?.location?.address}
+            className="rounded-lg"
+          >
+            <Controller
+              name="address"
+              control={controlUpdateLocation}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  label="Address"
+                  variant="bordered"
+                  labelPlacement="outside"
+                  type="text"
+                  isInvalid={errorsUpdateLocation.address !== undefined}
+                  errorMessage={errorsUpdateLocation.address?.message}
+                />
+              )}
+            />
+          </Skeleton>
           <Skeleton isLoaded={!!dataEvent?.isOnline} className="rounded-lg">
             <Controller
               name="isOnline"
