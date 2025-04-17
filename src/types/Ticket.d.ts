@@ -3,7 +3,7 @@ interface ITicket {
   name?: string;
   price?: number | string;
   quantity?: number | string;
-  descriptions?: string;
+  description?: string;
   events?: string;
 }
 
