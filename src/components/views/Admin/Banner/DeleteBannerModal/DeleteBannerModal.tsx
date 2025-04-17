@@ -54,7 +54,7 @@ const DeleteBannerModal = (props: IProps) => {
         <ModalHeader>Delete Banner</ModalHeader>
         <ModalBody>
           <p className="text-medium ">
-            Are ypu sure you want to delete this category?
+            Are you sure you want to delete this banner?
           </p>
         </ModalBody>
         <ModalFooter>

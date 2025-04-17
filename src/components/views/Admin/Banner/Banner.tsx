@@ -92,12 +92,12 @@ function Banner() {
         />
       )}
       <AddBannerModal refetchBanner={refetchBanners} {...addBannerModal} />
-      {/* <DeleteBannerModal
+      <DeleteBannerModal
         refetchBanner={refetchBanners}
         {...deleteBannerModal}
         selectedId={selectedId}
         setSelectedId={setSelectedId}
-      /> */}
+      />
     </section>
   );
 }
