@@ -104,7 +104,7 @@ const AddBannerModal = (props: IProps) => {
               <Controller
                 name="image"
                 control={control}
-                render={({ field: { onChange, value, ...field } }) => (
+                render={({ field: { onChange, ...field } }) => (
                   <InputFile
                     {...field}
                     onUpload={(files) => handleUploadImage(files, onChange)}

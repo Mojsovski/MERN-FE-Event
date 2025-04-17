@@ -67,7 +67,7 @@ const IconTab = (props: IProps) => {
           <Controller
             name="icon"
             control={controlUpdateIcon}
-            render={({ field: { onChange, value, ...field } }) => (
+            render={({ field: { onChange, ...field } }) => (
               <InputFile
                 {...field}
                 onDelete={() => handleDeleteIcon(onChange)}

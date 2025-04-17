@@ -71,7 +71,7 @@ const ImageTab = (props: IProps) => {
           <Controller
             name="image"
             control={controlUpdateImage}
-            render={({ field: { onChange, value, ...field } }) => (
+            render={({ field: { onChange, ...field } }) => (
               <InputFile
                 {...field}
                 onDelete={() => handleDeleteImage(onChange)}

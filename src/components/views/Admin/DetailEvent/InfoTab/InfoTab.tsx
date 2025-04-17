@@ -49,10 +49,6 @@ const InfoTab = (props: IProps) => {
       setValueUpdateInfo("endDate", toInputDate(`${dataEvent?.endDate}`));
       setValueUpdateInfo("isPublish", `${dataEvent?.isPublish}`);
       setValueUpdateInfo("isFeatured", `${dataEvent?.isFeatured}`);
-      // setValueUpdateInfo("isOnline", `${dataEvent?.isOnline}`);
-      // setValueUpdateInfo("region", `${dataEvent?.region}`);
-      // setValueUpdateInfo("latitude", `${dataEvent?.latitude}`);
-      // setValueUpdateInfo("longitude", `${dataEvent?.longitude}`);
     }
   }, [dataEvent]);
 

@@ -74,7 +74,7 @@ const CoverTab = (props: IProps) => {
           <Controller
             name="banner"
             control={controlUpdateCover}
-            render={({ field: { onChange, value, ...field } }) => (
+            render={({ field: { onChange, ...field } }) => (
               <InputFile
                 {...field}
                 onDelete={() => handleDeleteCover(onChange)}

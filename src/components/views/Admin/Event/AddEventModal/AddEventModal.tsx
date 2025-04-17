@@ -295,7 +295,7 @@ const AddEventModal = (props: IProps) => {
               <Controller
                 name="banner"
                 control={control}
-                render={({ field: { onChange, value, ...field } }) => (
+                render={({ field: { onChange, ...field } }) => (
                   <InputFile
                     {...field}
                     onUpload={(files) => handleUploadBanner(files, onChange)}
