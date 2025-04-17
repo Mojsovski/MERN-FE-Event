@@ -8,9 +8,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Please input name"),
-  description: yup.string().required("Please input description"),
-  icon: yup.mixed<FileList | string>().required("Please input icon"),
+  title: yup.string().required("Please input title"),
+  isShow: yup.string().required("Please input is show"),
+  image: yup.mixed<FileList | string>().required("Please input image"),
 });
 
 const useAddBannerModal = () => {
@@ -34,29 +34,29 @@ const useAddBannerModal = () => {
     resolver: yupResolver(schema),
   });
 
-  const preview = watch("icon");
-  const fileUrl = getValues("icon");
+  const preview = watch("image");
+  const fileUrl = getValues("image");
 
-  // handle upload banner icon
-  const handleUploadIcon = (
+  // handle upload banner image
+  const handleUploadImage = (
     files: FileList,
     onChange: (files: FileList | undefined) => void
   ) => {
     handleUploadFile(files, onChange, (fileUrl: string | undefined) => {
       if (fileUrl) {
-        setValue("icon", fileUrl);
+        setValue("image", fileUrl);
       }
     });
   };
 
-  // handle delete banner icon
-  const handleDeleteIcon = (
+  // handle delete banner image
+  const handleDeleteImage = (
     onChange: (files: FileList | undefined) => void
   ) => {
     handleDeleteFile(fileUrl, () => onChange(undefined));
   };
 
-  // handle delete banner icon while modal closed
+  // handle delete banner image while modal closed
   const handleOnClose = (onClose: () => void) => {
     handleDeleteFile(fileUrl, () => {
       reset();
@@ -104,9 +104,9 @@ const useAddBannerModal = () => {
     isSuccessMutateAddBanner,
 
     preview,
-    handleUploadIcon,
+    handleUploadImage,
     isPendingMutateUploadFile,
-    handleDeleteIcon,
+    handleDeleteImage,
     isPendingMutateDeleteFile,
     handleOnClose,
   };

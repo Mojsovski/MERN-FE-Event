@@ -6,6 +6,8 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  Select,
+  SelectItem,
   Spinner,
   Textarea,
 } from "@heroui/react";
@@ -29,8 +31,8 @@ const AddBannerModal = (props: IProps) => {
     handleOnClose,
     handleAddBanner,
     handleSubmitForm,
-    handleUploadIcon,
-    handleDeleteIcon,
+    handleUploadImage,
+    handleDeleteImage,
 
     isPendingMutateAddBanner,
     isSuccessMutateAddBanner,
@@ -67,7 +69,7 @@ const AddBannerModal = (props: IProps) => {
               <p className="text-sm font-bold">Information</p>
               <div className="flex flex-col gap-2">
                 <Controller
-                  name="name"
+                  name="title"
                   control={control}
                   render={({ field }) => (
                     <Input
@@ -76,38 +78,42 @@ const AddBannerModal = (props: IProps) => {
                       label="Name"
                       variant="bordered"
                       type="text"
-                      isInvalid={errors.name !== undefined}
-                      errorMessage={errors.name?.message}
+                      isInvalid={errors.title !== undefined}
+                      errorMessage={errors.title?.message}
                     />
                   )}
                 />
                 <Controller
-                  name="description"
+                  name="isShow"
                   control={control}
                   render={({ field }) => (
-                    <Textarea
+                    <Select
                       {...field}
-                      label="Description"
+                      label="Show / Hide"
                       variant="bordered"
-                      isInvalid={errors.description !== undefined}
-                      errorMessage={errors.description?.message}
-                    />
+                      isInvalid={errors.isShow !== undefined}
+                      errorMessage={errors.isShow?.message}
+                      disallowEmptySelection
+                    >
+                      <SelectItem key="true">Show</SelectItem>
+                      <SelectItem key="false">Hide</SelectItem>
+                    </Select>
                   )}
                 />
               </div>
-              <p className="text-sm font-bold">Icon</p>
+              <p className="text-sm font-bold">Image</p>
               <Controller
-                name="icon"
+                name="image"
                 control={control}
                 render={({ field: { onChange, value, ...field } }) => (
                   <InputFile
                     {...field}
-                    onUpload={(files) => handleUploadIcon(files, onChange)}
+                    onUpload={(files) => handleUploadImage(files, onChange)}
                     isUploading={isPendingMutateUploadFile}
-                    onDelete={() => handleDeleteIcon(onChange)}
+                    onDelete={() => handleDeleteImage(onChange)}
                     isDeleting={isPendingMutateDeleteFile}
-                    isInvalid={errors.icon !== undefined}
-                    errorMessage={errors.icon?.message}
+                    isInvalid={errors.image !== undefined}
+                    errorMessage={errors.image?.message}
                     isDropable
                     preview={typeof preview === "string" ? preview : ""}
                   />

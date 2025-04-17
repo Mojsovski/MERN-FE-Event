@@ -40,7 +40,13 @@ function Banner() {
       switch (columnKey) {
         case "image":
           return (
-            <Image src={`${cellValue}`} alt="icon" width={300} height={200} />
+            <Image
+              className="rounded-lg"
+              src={`${cellValue}`}
+              alt="icon"
+              width={300}
+              height={200}
+            />
           );
 
         case "isShow":
@@ -85,8 +91,8 @@ function Banner() {
           totalPages={dataBanners?.pagination.totalPages}
         />
       )}
-      {/* <AddBannerModal refetchBanner={refetchBanners} {...addBannerModal} />
-      <DeleteBannerModal
+      <AddBannerModal refetchBanner={refetchBanners} {...addBannerModal} />
+      {/* <DeleteBannerModal
         refetchBanner={refetchBanners}
         {...deleteBannerModal}
         selectedId={selectedId}
