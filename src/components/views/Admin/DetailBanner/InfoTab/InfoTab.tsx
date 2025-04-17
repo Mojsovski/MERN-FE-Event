@@ -6,7 +6,6 @@ import {
   CardHeader,
   Input,
   Skeleton,
-  Textarea,
   Spinner,
   Select,
   SelectItem,

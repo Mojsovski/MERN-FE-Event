@@ -9,7 +9,6 @@ import {
   Select,
   SelectItem,
   Spinner,
-  Textarea,
 } from "@heroui/react";
 import useAddBannerModal from "./useAddBannerModal";
 import { Controller } from "react-hook-form";

@@ -20,7 +20,6 @@ import InputFile from "@/components/ui/InputFile";
 import { useEffect } from "react";
 import { ICategory } from "@/types/Category";
 import { IRegency } from "@/types/Event";
-import { getLocalTimeZone, now } from "@internationalized/date";
 
 interface IProps {
   isOpen: boolean;

@@ -3,10 +3,10 @@ import { useRef } from "react";
 const useDebounce = () => {
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  const debounce = (func: Function, delay: number) => {
+  const debounce = (delay: number) => {
     if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
     debounceTimeout.current = setTimeout(() => {
-      func();
+      Function();
       debounceTimeout.current = null;
     }, delay);
   };
