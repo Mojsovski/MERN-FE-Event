@@ -2,7 +2,8 @@ import { Tabs, Tab } from "@heroui/react";
 import CoverTab from "./CoverTab";
 import InfoTab from "./InfoTab";
 import useDetailEvent from "./useDetailEvent";
-import LocationTab from "./LocationTab/LocationTab";
+import LocationTab from "./LocationTab";
+import TicketTab from "./TicketTab";
 
 function DetailEvent() {
   const {
@@ -42,6 +43,9 @@ function DetailEvent() {
           isPendingUpdate={isPendingMutateUpdateEvent}
           isSuccessUpdate={isSuccessMutateUpdateEvent}
         />
+      </Tab>
+      <Tab key="ticket" title="Ticket">
+        <TicketTab />
       </Tab>
     </Tabs>
   );

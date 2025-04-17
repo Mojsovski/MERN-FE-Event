@@ -22,23 +22,27 @@ interface IProps {
   buttonTopContentLabel?: string;
   columns: Record<string, unknown>[];
   data: Record<string, unknown>[];
-  totalPages: number;
-  renderCell: (item: Record<string, unknown>, columnKey: Key) => ReactNode;
-  onClickButtonTopContent?: () => void;
   emptyContent: string;
   isLoading?: boolean;
+  onClickButtonTopContent?: () => void;
+  renderCell: (item: Record<string, unknown>, columnKey: Key) => ReactNode;
+  totalPages: number;
+  showLimit?: boolean;
+  showSearch?: boolean;
 }
 
 const DataTable = (props: IProps) => {
   const {
+    buttonTopContentLabel,
     columns,
     data,
-    renderCell,
-    buttonTopContentLabel,
-    onClickButtonTopContent,
-    totalPages,
     emptyContent,
     isLoading,
+    onClickButtonTopContent,
+    renderCell,
+    totalPages,
+    showLimit = true,
+    showSearch = true,
   } = props;
 
   const {
@@ -53,14 +57,16 @@ const DataTable = (props: IProps) => {
   const TopContent = useMemo(() => {
     return (
       <div className="flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between gap-y-4">
-        <Input
-          isClearable
-          className="w-full sm:max-w-[24%]"
-          placeholder="Search by name"
-          startContent={<CiSearch />}
-          onClear={handleClearSearch}
-          onChange={handleSearch}
-        />
+        {showSearch && (
+          <Input
+            isClearable
+            className="w-full sm:max-w-[24%]"
+            placeholder="Search by name"
+            startContent={<CiSearch />}
+            onClear={handleClearSearch}
+            onChange={handleSearch}
+          />
+        )}
         {buttonTopContentLabel && (
           <Button color="danger" onPress={onClickButtonTopContent}>
             {buttonTopContentLabel}
@@ -78,19 +84,21 @@ const DataTable = (props: IProps) => {
   const BottomContent = useMemo(() => {
     return (
       <div className="flex items-center justify-center  lg:justify-between">
-        <Select
-          disallowEmptySelection
-          className="hidden max-w-36 lg:block"
-          size="md"
-          selectedKeys={[`${currentLimit}`]}
-          selectionMode="single"
-          onChange={handleChangeLimit}
-          startContent={<p className="text-small">Show:</p>}
-        >
-          {LIMIT_LISTS.map((item) => (
-            <SelectItem key={item.value}>{item.label}</SelectItem>
-          ))}
-        </Select>
+        {showLimit && (
+          <Select
+            disallowEmptySelection
+            className="hidden max-w-36 lg:block"
+            size="md"
+            selectedKeys={[`${currentLimit}`]}
+            selectionMode="single"
+            onChange={handleChangeLimit}
+            startContent={<p className="text-small">Show:</p>}
+          >
+            {LIMIT_LISTS.map((item) => (
+              <SelectItem key={item.value}>{item.label}</SelectItem>
+            ))}
+          </Select>
+        )}
         {totalPages > 0 && (
           <Pagination
             isCompact
