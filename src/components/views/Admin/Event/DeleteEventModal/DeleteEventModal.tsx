@@ -38,6 +38,7 @@ const DeleteEventModal = (props: IProps) => {
     if (isSuccessMutateDeleteEvent) {
       onClose();
       refetchEvents();
+      setSelectedId("");
     }
   }, [isSuccessMutateDeleteEvent]);
 
