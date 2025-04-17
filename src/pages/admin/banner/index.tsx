@@ -1,10 +1,14 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
-import Dashboard from "@/components/views/Admin/Dashboard";
+import Banner from "@/components/views/Admin/Banner";
 
 function BannerAdminPage() {
   return (
-    <DashboardLayout title="Banner" description="Banner Admin" type="admin">
-      <Dashboard />
+    <DashboardLayout
+      title="Banner"
+      description="List of All Categores, create new category, and manage existing category"
+      type="admin"
+    >
+      <Banner />
     </DashboardLayout>
   );
 }
