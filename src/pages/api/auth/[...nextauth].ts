@@ -33,7 +33,7 @@ export default NextAuth({
 
         const accessToken = result.data.data;
 
-        const me = await authServices.profileWithToken(accessToken);
+        const me = await authServices.getProfileWithToken(accessToken);
         const user = me.data.data;
 
         if (
