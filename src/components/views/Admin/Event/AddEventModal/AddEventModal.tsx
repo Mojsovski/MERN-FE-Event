@@ -20,6 +20,7 @@ import InputFile from "@/components/ui/InputFile";
 import { useEffect } from "react";
 import { ICategory } from "@/types/Category";
 import { IRegency } from "@/types/Event";
+import { getLocalTimeZone, now } from "@internationalized/date";
 
 interface IProps {
   isOpen: boolean;
@@ -49,6 +50,8 @@ const AddEventModal = (props: IProps) => {
     dataCategory,
     dataRegion,
     searchRegency,
+
+    setValue,
   } = useAddEventModal();
 
   const disabledSubmit =
@@ -62,6 +65,11 @@ const AddEventModal = (props: IProps) => {
       refetchEvents();
     }
   }, [isSuccessMutateAddEvent]);
+
+  useEffect(() => {
+    setValue("startDate", now(getLocalTimeZone()));
+    setValue("endDate", now(getLocalTimeZone()));
+  }, [onOpenChange]);
 
   return (
     <Modal
@@ -192,6 +200,22 @@ const AddEventModal = (props: IProps) => {
                   )}
                 />
                 <Controller
+                  name="description"
+                  control={control}
+                  render={({ field }) => (
+                    <Textarea
+                      {...field}
+                      label="Description"
+                      variant="bordered"
+                      isInvalid={errors.description !== undefined}
+                      errorMessage={errors.description?.message}
+                    />
+                  )}
+                />
+              </div>
+              <p className="text-sm font-bold">Location</p>
+              <div className="flex flex-col gap-2">
+                <Controller
                   name="isOnline"
                   control={control}
                   render={({ field }) => (
@@ -208,22 +232,6 @@ const AddEventModal = (props: IProps) => {
                     </Select>
                   )}
                 />
-                <Controller
-                  name="description"
-                  control={control}
-                  render={({ field }) => (
-                    <Textarea
-                      {...field}
-                      label="Description"
-                      variant="bordered"
-                      isInvalid={errors.description !== undefined}
-                      errorMessage={errors.description?.message}
-                    />
-                  )}
-                />
-              </div>
-              <p className="text-sm font-bold">Location</p>
-              <div className="flex flex-col gap-2">
                 <Controller
                   name="region"
                   control={control}

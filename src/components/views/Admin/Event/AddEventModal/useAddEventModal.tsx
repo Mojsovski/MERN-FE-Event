@@ -7,7 +7,6 @@ import { IEvent, IEventForm } from "@/types/Event";
 import { toDateStandard } from "@/utils/date";
 import { addToast, DateValue } from "@heroui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { getLocalTimeZone, now } from "@internationalized/date";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -53,9 +52,6 @@ const useAddCategoryModal = () => {
 
   const preview = watch("banner");
   const fileUrl = getValues("banner");
-
-  setValue("startDate", now(getLocalTimeZone()));
-  setValue("endDate", now(getLocalTimeZone()));
 
   // handle upload banner event
   const handleUploadBanner = (
@@ -136,8 +132,8 @@ const useAddCategoryModal = () => {
   const handleAddEvent = (data: IEventForm) => {
     const payload = {
       ...data,
-      startDate: data.startDate ? toDateStandard(data.startDate) : "",
-      endDate: data.endDate ? toDateStandard(data.endDate) : "",
+      startDate: toDateStandard(data.startDate as DateValue),
+      endDate: toDateStandard(data.endDate as DateValue),
       location: {
         address: `${data.address}`,
         region: `${data.region}`,
@@ -168,6 +164,8 @@ const useAddCategoryModal = () => {
     dataRegion,
     handleSearchRegion,
     searchRegency,
+
+    setValue,
   };
 };
 
