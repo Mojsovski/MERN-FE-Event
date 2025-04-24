@@ -1,6 +1,7 @@
 import PageHead from "@/components/commons/PageHead";
 import { Fragment, ReactNode } from "react";
 import NavbarLayout from "./NavbarLayout";
+import FooterLayout from "./FooterLayout";
 
 interface IProps {
   title: string;
@@ -13,9 +14,8 @@ function LandingPageLayout(props: IProps) {
     <Fragment>
       <PageHead title={title} />
       <NavbarLayout />
-      <div className="max-w-screen-3xl 3xl:container py-10 md:p-6">
-        {children}
-      </div>
+      <div className="w-screen py-10 md:p-6 ">{children}</div>
+      <FooterLayout />
     </Fragment>
   );
 }

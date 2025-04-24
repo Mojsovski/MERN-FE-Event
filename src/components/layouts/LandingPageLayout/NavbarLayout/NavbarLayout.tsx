@@ -41,11 +41,12 @@ function NavbarLayout() {
   return (
     <Navbar
       maxWidth="full"
-      className="max-w-screen-3xl 3xl:container px-5"
+      className="px-5"
       isBlurred={false}
       isBordered
       shouldHideOnScroll
     >
+      {/*  menu 1*/}
       <div className=" flex items-center gap-10 ">
         <NavbarBrand as={Link} href="/">
           <Image
@@ -74,8 +75,9 @@ function NavbarLayout() {
           ))}
         </NavbarContent>
       </div>
+      {/* menu 2*/}
       <NavbarContent justify="end">
-        <NavbarMenuToggle className="lg:hidden" />
+        {/* search event*/}
         <NavbarItem className="hidden lg:flex relative ">
           <Input
             isClearable
@@ -86,9 +88,10 @@ function NavbarLayout() {
             onChange={() => {}}
           />
         </NavbarItem>
+
         {/* account menu */}
         {session.status === "authenticated" ? (
-          <NavbarItem>
+          <NavbarItem className="hidden lg:flex">
             <Dropdown>
               <DropdownTrigger>
                 <Avatar
@@ -132,8 +135,9 @@ function NavbarLayout() {
           </div>
         )}
 
-        {/* mobile menu*/}
-        <NavbarMenu className="gap-4">
+        {/* mobile*/}
+        <NavbarMenuToggle className="lg:hidden" />
+        <NavbarMenu className="gap-4 bg-white">
           {NAV_ITEMS.map((item) => (
             <NavbarMenuItem
               key={`nav-${item.label}`}
