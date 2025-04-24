@@ -42,7 +42,7 @@ function NavbarLayout() {
     <Navbar
       maxWidth="full"
       className="px-5"
-      isBlurred={false}
+      isBlurred={true}
       isBordered
       shouldHideOnScroll
     >

@@ -14,7 +14,7 @@ function LandingPageLayout(props: IProps) {
     <Fragment>
       <PageHead title={title} />
       <NavbarLayout />
-      <div className="w-screen py-10 md:p-6 ">{children}</div>
+      <div className="py-10 md:p-6">{children}</div>
       <FooterLayout />
     </Fragment>
   );

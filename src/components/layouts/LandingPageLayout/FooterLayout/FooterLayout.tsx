@@ -4,7 +4,7 @@ import { NAV_ITEMS, SOCIAL_ITEMS } from "../LandingPageLayout.constans";
 
 function FooterLayout() {
   return (
-    <div className="w-screen flex flex-col bg-slate-900 items-center justify-between px-6 py-10 text-center lg:flex-row lg:text-left xl:p-20">
+    <div className="flex flex-col bg-slate-900 items-center justify-between px-6 py-10 text-center lg:flex-row lg:text-left xl:p-20">
       <Image
         src={"/images/general/logo.svg"}
         alt="logo"
