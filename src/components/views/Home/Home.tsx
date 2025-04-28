@@ -3,14 +3,17 @@ import HomeCardList from "./HomeCardList";
 import HomeSlider from "./HomeSlider";
 import useHome from "./useHome";
 import Image from "next/image";
+import HomeCategoryList from "./HomeCategoryList";
 
 function Home() {
   const {
     dataBanners,
+    dataCategories,
     dataFeaturedEvents,
     dataLatestEvents,
 
     isLoadingBanners,
+    isLoadingCategories,
     isLoadingFeaturedEvents,
     isLoadingLatestEvents,
   } = useHome();
@@ -41,6 +44,10 @@ function Home() {
         title="Latest Event"
         events={dataLatestEvents?.data}
         isLoading={isLoadingLatestEvents}
+      />
+      <HomeCategoryList
+        categories={dataCategories?.data}
+        isLoading={isLoadingCategories}
       />
     </div>
   );

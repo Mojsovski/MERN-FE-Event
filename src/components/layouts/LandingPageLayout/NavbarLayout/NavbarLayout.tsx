@@ -30,14 +30,6 @@ function NavbarLayout() {
   const session = useSession();
   const { dataProfile } = useNavbarLayout();
 
-  const getProfilePictureUrl = () => {
-    if (!dataProfile?.profilePicture) return "";
-
-    if (dataProfile.profilePicture.startsWith("http")) {
-      return dataProfile.profilePicture;
-    }
-  };
-
   return (
     <Navbar maxWidth="full" className="px-5" isBlurred={true} isBordered>
       {/*  menu 1*/}
@@ -96,16 +88,16 @@ function NavbarLayout() {
                 />
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem
-                  key="admin"
-                  href="/admin/dashboard"
-                  className={cn({ hidden: dataProfile?.role !== "admin" })}
-                >
-                  Admin Dashboard
-                </DropdownItem>
-                <DropdownItem key="profile" href="/member/profile">
-                  Profile
-                </DropdownItem>
+                {dataProfile?.role === "admin" ? (
+                  <DropdownItem key="admin" href="/admin/dashboard">
+                    Admin Dashboard
+                  </DropdownItem>
+                ) : (
+                  <DropdownItem key="profile" href="/member/profile">
+                    Profile
+                  </DropdownItem>
+                )}
+
                 <DropdownItem key="signout" onPress={() => signOut()}>
                   Log Out
                 </DropdownItem>
