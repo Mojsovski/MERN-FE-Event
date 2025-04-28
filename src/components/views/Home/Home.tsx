@@ -1,13 +1,46 @@
+import { Skeleton } from "@heroui/react";
+import HomeCardList from "./HomeCardList";
 import HomeSlider from "./HomeSlider";
 import useHome from "./useHome";
+import Image from "next/image";
 
 function Home() {
-  const { dataBanners, isLoadingBanners } = useHome();
+  const {
+    dataBanners,
+    dataFeaturedEvents,
+    dataLatestEvents,
+
+    isLoadingBanners,
+    isLoadingFeaturedEvents,
+    isLoadingLatestEvents,
+  } = useHome();
   return (
     <div>
       <HomeSlider
         banners={dataBanners?.data}
         isLoadingBanners={isLoadingBanners}
+      />
+      <HomeCardList
+        title="Featured Event"
+        events={dataFeaturedEvents?.data}
+        isLoading={isLoadingFeaturedEvents}
+      />
+      <Skeleton
+        isLoaded={!isLoadingBanners}
+        className="mb-8 h-[20vw] w-full rounded-2xl"
+      >
+        <Image
+          src={dataBanners && dataBanners?.data[1]?.image}
+          alt="banner"
+          className="h-[20vw] w-full rounded-2xl object-cover"
+          width={1200}
+          height={400}
+        />
+      </Skeleton>
+      <HomeCardList
+        title="Latest Event"
+        events={dataLatestEvents?.data}
+        isLoading={isLoadingLatestEvents}
       />
     </div>
   );

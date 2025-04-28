@@ -39,13 +39,7 @@ function NavbarLayout() {
   };
 
   return (
-    <Navbar
-      maxWidth="full"
-      className="px-5"
-      isBlurred={true}
-      isBordered
-      shouldHideOnScroll
-    >
+    <Navbar maxWidth="full" className="px-5" isBlurred={true} isBordered>
       {/*  menu 1*/}
       <div className=" flex items-center gap-10 ">
         <NavbarBrand as={Link} href="/">

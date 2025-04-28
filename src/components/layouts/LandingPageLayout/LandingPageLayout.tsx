@@ -11,12 +11,12 @@ interface IProps {
 function LandingPageLayout(props: IProps) {
   const { title, children } = props;
   return (
-    <Fragment>
+    <div className="h-screen flex flex-col justify-between">
       <PageHead title={title} />
       <NavbarLayout />
       <div className="py-10 md:p-6">{children}</div>
       <FooterLayout />
-    </Fragment>
+    </div>
   );
 }
 

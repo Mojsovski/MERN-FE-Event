@@ -14,7 +14,7 @@ const HomeSlider = (props: IProps) => {
   const { banners, isLoadingBanners } = props;
 
   return (
-    <div className="mx-6 mb-6 h-[25vw] lg:mx-0 lg:mb-16">
+    <div className="mx-6 mb-6 h-[25vw] lg:mx-0 lg:mb-8">
       {!isLoadingBanners ? (
         <Swiper
           pagination={{ dynamicBullets: true, clickable: true }}
@@ -22,7 +22,7 @@ const HomeSlider = (props: IProps) => {
           loop
           modules={[Autoplay, Pagination]}
           className="h-full w-full"
-          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
         >
           {banners?.map((banners: IBanner) => (
             <SwiperSlide key={banners._id}>
@@ -30,7 +30,7 @@ const HomeSlider = (props: IProps) => {
                 src={`${banners.image}`}
                 alt={`${banners.title}`}
                 width={1920}
-                height={1080}
+                height={400}
                 className="h-[80%] w-full rounded-2xl object-cover lg:h[90%]"
               />
             </SwiperSlide>

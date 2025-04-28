@@ -2,9 +2,10 @@ import Image from "next/image";
 import { Card, CardBody, Input, Button, Spinner } from "@heroui/react";
 import Link from "next/link";
 import useLogin from "./useLogin";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaHome } from "react-icons/fa";
 import { Controller } from "react-hook-form";
 import { cn } from "@/utils/cn";
+import { CiHome } from "react-icons/ci";
 
 function Login() {
   const {
@@ -108,6 +109,13 @@ function Login() {
 
             <Button color="danger" size="lg" type="submit">
               {isPendingLogin ? <Spinner color="white" size="sm" /> : "Login"}
+            </Button>
+
+            <Button color="danger" variant="bordered" size="lg">
+              <Link className="flex items-center gap-2" href="/">
+                <FaHome className="text-3xl" />
+                Home
+              </Link>
             </Button>
           </form>
         </CardBody>

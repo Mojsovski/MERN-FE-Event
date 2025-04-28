@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { JSX } from "react";
-import { CiLogout } from "react-icons/ci";
+import { CiHome, CiLogout } from "react-icons/ci";
 
 interface ISidebarItem {
   key: string;
@@ -64,12 +64,24 @@ function SidebarLayout(props: IProps) {
           )}
         </Listbox>
       </div>
-      <div className="flex items-center p-1">
+      <div className="flex flex-col gap-2">
+        <Link href="/" className="block">
+          <Button
+            color="danger"
+            fullWidth
+            variant="light"
+            className="flex justify-start rounded-lg px-2 py-1.5"
+            size="lg"
+          >
+            <CiHome />
+            Home
+          </Button>
+        </Link>
         <Button
           color="danger"
           fullWidth
           variant="light"
-          className=" flex justify-start rounded-lg px-2 py-1.5"
+          className="flex justify-start rounded-lg px-2 py-1.5"
           size="lg"
           onPress={() => signOut()}
         >
