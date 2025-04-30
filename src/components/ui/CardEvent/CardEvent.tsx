@@ -52,7 +52,6 @@ const CardEvent = (props: IProps) => {
           <CardFooter className="flex flex-col items-baseline pt-0 ">
             <Skeleton className="mb-2 h-4 w-4/5 rounded-lg" />
             <Skeleton className="mb-4 h-3 w-3/5 rounded-lg" />
-
             <Skeleton className="h-3 w-2/5 rounded-lg" />
           </CardFooter>
         </Fragment>

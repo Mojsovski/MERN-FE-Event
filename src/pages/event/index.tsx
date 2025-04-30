@@ -1,11 +1,11 @@
 import LandingPageLayout from "@/components/layouts/LandingPageLayout";
-import Home from "@/components/views/LandingPage/Home";
+import Event from "@/components/views/LandingPage/Event";
 
-function HomePage() {
+function EventPage() {
   return (
     <LandingPageLayout title="Acara | Home">
-      <Home />
+      <Event />
     </LandingPageLayout>
   );
 }
-export default HomePage;
+export default EventPage;

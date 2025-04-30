@@ -14,10 +14,16 @@ const HomeCategoryList = (props: IProps) => {
       <CardHeader className="p-0">
         <h1 className="text-2xl font-bold text-danger">Event by Category</h1>
       </CardHeader>
-      <CardBody className="mt-04 p-0">
+      <CardBody className="mt-4 p-0">
         <div className="grid auto-cols-[8rem] grid-flow-col gap-4 overflow-x-auto lg:grid-cols-8">
-          {!isLoading
-            ? categories?.map((item) => (
+          {isLoading
+            ? Array.from({ length: 8 }).map((_, index) => (
+                <Skeleton
+                  key={`list-category-${index}`}
+                  className="aspect-square rounded-lg"
+                />
+              ))
+            : categories?.map((item) => (
                 <Link
                   key={`category-${item._id}`}
                   href={`/event?category${item._id}`}
@@ -32,12 +38,6 @@ const HomeCategoryList = (props: IProps) => {
                   />
                   <p className="text-md font-bold">{item.name}</p>
                 </Link>
-              ))
-            : Array.from({ length: 7 }).map((index) => (
-                <Skeleton
-                  key={`list-category-${index}`}
-                  className="aspect-square rounded-lg"
-                />
               ))}
         </div>
       </CardBody>

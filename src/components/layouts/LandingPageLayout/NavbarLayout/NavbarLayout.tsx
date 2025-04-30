@@ -31,7 +31,13 @@ function NavbarLayout() {
   const { dataProfile } = useNavbarLayout();
 
   return (
-    <Navbar maxWidth="full" className="px-5" isBlurred={true} isBordered>
+    <Navbar
+      maxWidth="full"
+      className="px-5"
+      isBordered
+      isBlurred
+      shouldHideOnScroll={false}
+    >
       {/*  menu 1*/}
       <div className=" flex items-center gap-10 ">
         <NavbarBrand as={Link} href="/">
@@ -64,7 +70,7 @@ function NavbarLayout() {
       {/* menu 2*/}
       <NavbarContent justify="end">
         {/* search event*/}
-        <NavbarItem className="hidden lg:flex relative ">
+        <NavbarItem className="hidden lg:flex lg:relative ">
           <Input
             isClearable
             className="w=[300px]"
@@ -77,27 +83,34 @@ function NavbarLayout() {
 
         {/* account menu */}
         {session.status === "authenticated" ? (
-          <NavbarItem className="hidden lg:flex">
+          <NavbarItem className="hidden lg:block">
             <Dropdown>
               <DropdownTrigger>
                 <Avatar
-                  src={dataProfile?.fullName}
+                  src={dataProfile?.profilePicture}
                   className="cursor-pointer"
                   showFallback
-                  name={dataProfile?.fullName}
                 />
               </DropdownTrigger>
               <DropdownMenu>
-                {dataProfile?.role === "admin" ? (
-                  <DropdownItem key="admin" href="/admin/dashboard">
-                    Admin Dashboard
-                  </DropdownItem>
-                ) : (
-                  <DropdownItem key="profile" href="/member/profile">
-                    Profile
-                  </DropdownItem>
-                )}
-
+                <DropdownItem
+                  key="admin"
+                  href="/admin/dashboard"
+                  className={cn({
+                    hidden: dataProfile?.role !== "admin",
+                  })}
+                >
+                  Admin Dashboard
+                </DropdownItem>
+                <DropdownItem
+                  key="member"
+                  href="/member/profile"
+                  className={cn({
+                    hidden: dataProfile?.role !== "member",
+                  })}
+                >
+                  Profile
+                </DropdownItem>
                 <DropdownItem key="signout" onPress={() => signOut()}>
                   Log Out
                 </DropdownItem>
