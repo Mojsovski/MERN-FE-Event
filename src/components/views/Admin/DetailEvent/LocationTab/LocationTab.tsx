@@ -115,7 +115,7 @@ const LocationTab = (props: IProps) => {
                   errorMessage={errorsUpdateLocation.isOnline?.message}
                   disallowEmptySelection
                   labelPlacement="outside"
-                  defaultSelectedKeys={[dataEvent.isOnline ? "true" : "false"]}
+                  defaultSelectedKeys={[dataEvent?.isOnline ? "true" : "false"]}
                 >
                   <SelectItem key="true">Online</SelectItem>
                   <SelectItem key="false">Offline</SelectItem>
@@ -144,7 +144,7 @@ const LocationTab = (props: IProps) => {
             />
           </Skeleton>
           <Skeleton
-            isLoaded={!!dataEvent.location?.coordinates[1]}
+            isLoaded={!!dataEvent?.location?.coordinates[1]}
             className="rounded-lg"
           >
             <Controller

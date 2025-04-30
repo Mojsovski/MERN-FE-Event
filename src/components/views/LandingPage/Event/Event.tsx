@@ -5,23 +5,25 @@ import { useRouter } from "next/router";
 import useChangeUrl from "@/hooks/useChangeUrl";
 import { useEffect } from "react";
 import EventFooter from "./EventFooter";
+import EventFilter from "./EventFilter";
 
 function Event() {
   const router = useRouter();
   const { dataEvents, isLoadingEvents, isRefetchingEvents, refetchEvents } =
     useEvent();
-  const { setUrl } = useChangeUrl();
+  const { setUrlExplore } = useChangeUrl();
 
   useEffect(() => {
     if (router.isReady) {
-      setUrl();
+      setUrlExplore();
     }
   }, [router.isReady]);
 
   return (
     <div className="flex flex-col w-full justify-center gap-6 px-4 lg:flex-row lg:px-0">
-      <div className="w-full lg:w-80">Filter</div>
-      <div className="min-h-[70vh] w-fit flex-1">
+      <EventFilter />
+
+      <div className="min-h-[70vh] w-full flex-1">
         <div className="mb-4 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {!isLoadingEvents && !isRefetchingEvents
             ? dataEvents?.data.map((event: IEvent) => (

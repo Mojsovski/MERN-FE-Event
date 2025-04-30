@@ -5,10 +5,16 @@ import { useRouter } from "next/router";
 
 function useEvent() {
   const router = useRouter();
-  const { currentLimit, currentPage, currentSearch } = useChangeUrl();
+  const {
+    currentLimit,
+    currentPage,
+    currentCategory,
+    currentIsOnline,
+    currentIsFeatured,
+  } = useChangeUrl();
 
   const getEvent = async () => {
-    let params = `limit=${currentLimit}&page=${currentPage}`;
+    let params = `limit=${currentLimit}&page=${currentPage}&category=${currentCategory}&isOnline=${currentIsOnline}&isFeatured=${currentIsFeatured}`;
 
     const res = await eventServices.getEvents(params);
     const { data } = res;
@@ -21,7 +27,14 @@ function useEvent() {
     isRefetching: isRefetchingEvents,
     refetch: refetchEvents,
   } = useQuery({
-    queryKey: ["Events", currentPage, currentLimit, currentSearch],
+    queryKey: [
+      "Events",
+      currentPage,
+      currentLimit,
+      currentCategory,
+      currentIsOnline,
+      currentIsFeatured,
+    ],
     queryFn: () => getEvent(),
     enabled: router.isReady && !!currentPage && !!currentLimit,
   });
