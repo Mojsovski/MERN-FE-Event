@@ -14,9 +14,10 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
+  Link,
 } from "@heroui/react";
 import Image from "next/image";
-import Link from "next/link";
+
 import { BUTTON_ITEMS, NAV_ITEMS } from "../LandingPageLayout.constans";
 import { cn } from "@/utils/cn";
 import { useRouter } from "next/router";
@@ -138,16 +139,18 @@ function NavbarLayout() {
         <NavbarMenuToggle className="lg:hidden" />
         <NavbarMenu className="gap-4 bg-white">
           {NAV_ITEMS.map((item) => (
-            <NavbarMenuItem
-              key={`nav-${item.label}`}
-              className={cn(
-                "font-medium text-default-700 hover:text-danger hover:font-bold ",
-                {
-                  "font-bold text-danger-500": router.pathname === item.href,
-                }
-              )}
-            >
-              <Link href={item.href}>{item.label}</Link>
+            <NavbarMenuItem key={`nav-${item.label}`}>
+              <Link
+                className={cn(
+                  "font-medium text-default-700 hover:text-danger hover:font-bold ",
+                  {
+                    "font-bold text-danger-500": router.pathname === item.href,
+                  }
+                )}
+                href={item.href}
+              >
+                {item.label}
+              </Link>
             </NavbarMenuItem>
           ))}
           {/* mobile account menu */}

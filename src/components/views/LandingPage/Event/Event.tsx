@@ -6,6 +6,7 @@ import useChangeUrl from "@/hooks/useChangeUrl";
 import { useEffect } from "react";
 import EventFooter from "./EventFooter";
 import EventFilter from "./EventFilter";
+import Image from "next/image";
 
 function Event() {
   const router = useRouter();
@@ -40,6 +41,22 @@ function Event() {
         {!isLoadingEvents && dataEvents?.data.length > 0 && (
           <EventFooter totalPages={dataEvents?.pagination?.totalPages} />
         )}
+
+        {dataEvents?.data?.length < 1 &&
+          !isLoadingEvents &&
+          !isRefetchingEvents && (
+            <div className="flex flex-col items-center justify-center gap-4 py-20">
+              <Image
+                src="/images/illustration/no-data.svg"
+                alt="no-data"
+                width={200}
+                height={200}
+              />
+              <h2 className="text-center text-2xl font-bold text-danger">
+                Event is empty 🙁
+              </h2>
+            </div>
+          )}
       </div>
     </div>
   );

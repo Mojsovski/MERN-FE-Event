@@ -27,6 +27,7 @@ function Home() {
         title="Featured Event"
         events={dataFeaturedEvents?.data}
         isLoading={isLoadingFeaturedEvents}
+        urlMore="/event?isFeatured=true"
       />
       <Skeleton
         isLoaded={!isLoadingBanners}
@@ -35,7 +36,7 @@ function Home() {
         <Image
           src={dataBanners && dataBanners?.data[1]?.image}
           alt="banner"
-          className="h-[20vw] w-full rounded-2xl object-cover"
+          className="h-[20vw] w-full object-cover  rounded-2xl"
           width={1200}
           height={400}
         />
