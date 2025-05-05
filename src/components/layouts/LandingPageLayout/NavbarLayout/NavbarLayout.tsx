@@ -15,6 +15,9 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
   Link,
+  Listbox,
+  ListboxItem,
+  Spinner,
 } from "@heroui/react";
 import Image from "next/image";
 
@@ -25,11 +28,20 @@ import { CiSearch } from "react-icons/ci";
 import { signOut, useSession } from "next-auth/react";
 import useNavbarLayout from "./useNavbarLayout";
 import { Fragment } from "react";
+import { IEvent } from "@/types/Event";
 
 function NavbarLayout() {
   const router = useRouter();
   const session = useSession();
-  const { dataProfile } = useNavbarLayout();
+  const {
+    dataProfile,
+    handleSearch,
+    dataSearchEvent,
+    isLoadingSearchEvent,
+    isRefetchingSearchEvent,
+    search,
+    setSearch,
+  } = useNavbarLayout();
 
   return (
     <Navbar
@@ -70,16 +82,50 @@ function NavbarLayout() {
       </div>
       {/* menu 2*/}
       <NavbarContent justify="end">
-        {/* search event*/}
+        {/* search form event*/}
         <NavbarItem className="hidden lg:flex lg:relative ">
           <Input
             isClearable
             className="w=[300px]"
             placeholder="Search Event"
             startContent={<CiSearch />}
-            onClear={() => {}}
-            onChange={() => {}}
+            onClear={() => setSearch("")}
+            onChange={handleSearch}
           />
+
+          {search !== "" && (
+            <Listbox
+              items={dataSearchEvent?.data || []}
+              className="absolute right-0 top-12 rounded-xl border bg-white"
+            >
+              {!isRefetchingSearchEvent && !isLoadingSearchEvent ? (
+                (item: IEvent) => (
+                  <ListboxItem key={item._id} href={`/event/${item.slug}`}>
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src={`${item.banner}`}
+                        alt={`${item.name}`}
+                        className="w-2/5 rounded-md"
+                        width={100}
+                        height={40}
+                      />
+                      <p className="line-clamp-2 w-3/5 text-wrap">
+                        {item.name}
+                      </p>
+                    </div>
+                  </ListboxItem>
+                )
+              ) : (
+                <ListboxItem key="loading">
+                  <Spinner
+                    color="danger"
+                    size="sm"
+                    className="flex justify-center items-center"
+                  />
+                </ListboxItem>
+              )}
+            </Listbox>
+          )}
         </NavbarItem>
 
         {/* account menu */}
