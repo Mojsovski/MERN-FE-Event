@@ -67,7 +67,7 @@ const AddTicketModal = (props: IProps) => {
                       {...field}
                       label="Price"
                       variant="bordered"
-                      type="text"
+                      type="number"
                       isInvalid={errors.price !== undefined}
                       errorMessage={errors.price?.message}
                     />
@@ -108,7 +108,7 @@ const AddTicketModal = (props: IProps) => {
                       {...field}
                       label="Quantity"
                       variant="bordered"
-                      type="text"
+                      type="number"
                       isInvalid={errors.quantity !== undefined}
                       errorMessage={errors.quantity?.message}
                     />
