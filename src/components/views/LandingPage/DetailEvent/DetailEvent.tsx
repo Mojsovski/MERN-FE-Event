@@ -13,6 +13,8 @@ import Image from "next/image";
 import { ITicket } from "@/types/Ticket";
 import DetailEventTicket from "./DetailEventTicket";
 import DetailEventCart from "./DetailEventCart";
+import Script from "next/script";
+import env from "@/config/env";
 
 function DetailEvent() {
   const {
@@ -22,9 +24,16 @@ function DetailEvent() {
     cart,
     handleAddToCart,
     handleChangeQuantity,
+    mutateCreateOrder,
+    isPendingCreateOrder,
   } = useDetailEvent();
   return (
     <div className="px-8 md:px-0  ">
+      <Script
+        src={env.MIDTRANS_SNAP_URL}
+        data-client-key={env.MIDTRANS_CLIENT_KEY}
+        strategy="lazyOnload"
+      />
       <Skeleton
         isLoaded={!!dataDetailEvent?.name}
         className="h-9 w-1/4 rounded-lg"
@@ -127,6 +136,8 @@ function DetailEvent() {
             cart={cart}
             dataTicketInCart={dataTicketInCart}
             onChangeQuantity={handleChangeQuantity}
+            onCreateOrder={mutateCreateOrder}
+            isLoading={isPendingCreateOrder}
           />
         </div>
       </section>
