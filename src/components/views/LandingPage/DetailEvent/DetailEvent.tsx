@@ -12,10 +12,17 @@ import { FaLocationDot } from "react-icons/fa6";
 import Image from "next/image";
 import { ITicket } from "@/types/Ticket";
 import DetailEventTicket from "./DetailEventTicket";
+import DetailEventCart from "./DetailEventCart";
 
 function DetailEvent() {
-  const { dataDetailEvent, dataTicket, isLoadingDetailEvent, isLoadingTicket } =
-    useDetailEvent();
+  const {
+    dataDetailEvent,
+    dataTicket,
+    dataTicketInCart,
+    cart,
+    handleAddToCart,
+    handleChangeQuantity,
+  } = useDetailEvent();
   return (
     <div className="px-8 md:px-0  ">
       <Skeleton
@@ -104,13 +111,24 @@ function DetailEvent() {
               </h2>
               <div className="mt-2 flex flex-col gap-8">
                 {dataTicket?.map((item: ITicket) => (
-                  <DetailEventTicket key={`ticket-${item._id}`} ticket={item} />
+                  <DetailEventTicket
+                    key={`ticket-${item._id}`}
+                    ticket={item}
+                    cart={cart}
+                    handleAddToCart={() => handleAddToCart(`${item._id}`)}
+                  />
                 ))}
               </div>
             </Tab>
           </Tabs>
         </div>
-        <div className="w-full lg:w-2/6"></div>
+        <div className="w-full lg:w-2/6">
+          <DetailEventCart
+            cart={cart}
+            dataTicketInCart={dataTicketInCart}
+            onChangeQuantity={handleChangeQuantity}
+          />
+        </div>
       </section>
     </div>
   );
