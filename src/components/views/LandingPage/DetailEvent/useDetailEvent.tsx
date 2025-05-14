@@ -32,7 +32,7 @@ const useDetailEvent = () => {
   };
 
   const { data: dataTicket } = useQuery({
-    queryKey: ["Ticket"],
+    queryKey: ["Tickets"],
     queryFn: getTicketByEventId,
     enabled: !!dataDetailEvent?._id,
   });
@@ -89,6 +89,7 @@ const useDetailEvent = () => {
           color: "danger",
           title: "Error",
           description: error.message,
+          timeout: 100000,
         });
       },
       onSuccess: (result) => {

@@ -28,12 +28,13 @@ function DetailEvent() {
     isPendingCreateOrder,
   } = useDetailEvent();
   return (
-    <div className="px-8 md:px-0  ">
+    <div className="px-8 md:px-0">
       <Script
         src={env.MIDTRANS_SNAP_URL}
         data-client-key={env.MIDTRANS_CLIENT_KEY}
         strategy="lazyOnload"
       />
+
       <Skeleton
         isLoaded={!!dataDetailEvent?.name}
         className="h-9 w-1/4 rounded-lg"
