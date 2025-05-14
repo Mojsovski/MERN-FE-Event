@@ -9,8 +9,8 @@ const orderServices = {
   //     instance.get(`${endpoint.CATEGORY}?${params}`),
   //   getCategoryById: (id: string) => instance.get(`${endpoint.CATEGORY}/${id}`),
   //   deleteCategory: (id: string) => instance.delete(`${endpoint.CATEGORY}/${id}`),
-  //   updateCategory: (id: string, payload: ICategory) =>
-  //     instance.put(`${endpoint.CATEGORY}/${id}`, payload),
+  updateOrderStatus: (id: string, status: string) =>
+    instance.put(`${endpoint.ORDER}/${id}/${status}`),
 };
 
 export default orderServices;
