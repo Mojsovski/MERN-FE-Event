@@ -56,7 +56,7 @@ function Transaction() {
             <DropdownAction
               hideButtonDelete
               onPressButtonDetail={() =>
-                push(`/admin/transaction/${transaction._id}`)
+                push(`/member/transaction/${transaction?.orderId}`)
               }
             />
           );
