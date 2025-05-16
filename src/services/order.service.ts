@@ -5,7 +5,7 @@ import { ICart } from "@/types/Ticket";
 
 const orderServices = {
   addOrder: (payload: ICart) => instance.post(endpoint.ORDER, payload),
-  getOrder: (params?: string) => instance.get(`${endpoint.ORDER}?${params}`),
+  getOrders: (params?: string) => instance.get(`${endpoint.ORDER}?${params}`),
   getMemberOrder: (params?: string) =>
     instance.get(`${endpoint.ORDER}-history?${params}`),
   getOrderById: (id: string) => instance.get(`${endpoint.ORDER}/${id}`),
