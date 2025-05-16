@@ -1,16 +1,16 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
-import DetailTransaction from "@/components/views/Member/DetailTransaction";
+import DetailTransaction from "@/components/views/Admin/DetailTransaction";
 
-function DetailTransactionMemberPage() {
+function DetailTransactionAdminPage() {
   return (
     <DashboardLayout
       title="Detail Transaction"
       description="Manage information for this transaction."
-      type="member"
+      type="admin"
     >
       <DetailTransaction />
     </DashboardLayout>
   );
 }
 
-export default DetailTransactionMemberPage;
+export default DetailTransactionAdminPage;
