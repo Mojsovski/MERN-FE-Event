@@ -1,7 +1,12 @@
 import React, { ReactNode, Fragment, useState } from "react";
 import PageHead from "@/components/commons/PageHead";
 import SidebarLayout from "./SidebarLayout";
-import { SIDEBAR_ADMIN, SIDEBAR_MEMBER } from "./DashboardLayout.constans";
+import {
+  BUTTONITEMS_ADMIN,
+  BUTTONITEMS_MEMBER,
+  SIDEBAR_ADMIN,
+  SIDEBAR_MEMBER,
+} from "./DashboardLayout.constans";
 import { Navbar, NavbarMenuToggle } from "@heroui/react";
 
 interface IProps {
@@ -21,6 +26,9 @@ const DashboardLayout = (props: IProps) => {
       <div className="max-w-screen-3xl 3xl:container flex">
         <SidebarLayout
           sidebarItems={type === "admin" ? SIDEBAR_ADMIN : SIDEBAR_MEMBER}
+          buttonItems={
+            type === "admin" ? BUTTONITEMS_ADMIN : BUTTONITEMS_MEMBER
+          }
           isOpen={open}
         />
         <div className="h-screen w-full overflow-y-auto p-8">

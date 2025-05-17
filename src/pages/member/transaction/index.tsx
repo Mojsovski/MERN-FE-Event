@@ -1,5 +1,5 @@
 import DashboardLayout from "@/components/layouts/DashboardLayout";
-import Dashboard from "@/components/views/Member/Dashboard";
+
 import Transaction from "@/components/views/Member/Transaction";
 
 function TransactionMemberPage() {

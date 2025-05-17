@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { JSX } from "react";
-import { CiHome, CiLogout } from "react-icons/ci";
+import { CiLogout } from "react-icons/ci";
 
 interface ISidebarItem {
   key: string;
@@ -17,11 +17,12 @@ interface ISidebarItem {
 interface IProps {
   sidebarItems: ISidebarItem[];
   isOpen: boolean;
+  buttonItems: ISidebarItem[];
 }
 
 function SidebarLayout(props: IProps) {
   const router = useRouter();
-  const { sidebarItems, isOpen } = props;
+  const { sidebarItems, isOpen, buttonItems } = props;
 
   return (
     <div
@@ -65,18 +66,23 @@ function SidebarLayout(props: IProps) {
         </Listbox>
       </div>
       <div className="flex flex-col gap-2">
-        <Link href="/" className="block">
-          <Button
-            color="danger"
-            fullWidth
-            variant="light"
-            className="flex justify-start rounded-lg px-2 py-1.5"
-            size="lg"
-          >
-            <CiHome />
-            Home
-          </Button>
-        </Link>
+        {buttonItems.map((item) => (
+          <Link href={item.href} className="block" key={item.key}>
+            <Button
+              color="danger"
+              fullWidth
+              variant="light"
+              className={cn("flex justify-start rounded-lg px-2 py-1.5", {
+                "bg-danger text-white": router.pathname === item.href,
+              })}
+              size="lg"
+            >
+              {item.icon}
+              {item.label}
+            </Button>
+          </Link>
+        ))}
+
         <Button
           color="danger"
           fullWidth
