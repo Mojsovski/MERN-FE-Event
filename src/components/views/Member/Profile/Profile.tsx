@@ -2,6 +2,7 @@ import { Tabs, Tab } from "@heroui/react";
 import PictureTab from "./PictureTab";
 import useProfile from "./useProfile";
 import InfoTab from "./InfoTab";
+import SecurityTab from "./SecurityTab";
 
 function Profile() {
   const {
@@ -27,6 +28,9 @@ function Profile() {
           isPendingUpdate={isPendingMutateUpdateProfile}
           isSuccessUpdate={isSuccessMutateUpdateProfile}
         />
+      </Tab>
+      <Tab key="security" title="Security">
+        <SecurityTab />
       </Tab>
     </Tabs>
   );
