@@ -2,7 +2,7 @@ import orderServices from "@/services/order.service";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 
-function usePayment() {
+const usePayment = () => {
   const router = useRouter();
   const { order_id, status } = router.query;
 
@@ -30,7 +30,9 @@ function usePayment() {
     mutationFn: updateOrderStatus,
   });
 
-  return { mutateUpdateOrderStatus };
-}
+  return {
+    mutateUpdateOrderStatus,
+  };
+};
 
 export default usePayment;

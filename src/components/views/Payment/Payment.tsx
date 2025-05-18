@@ -11,12 +11,12 @@ function Payment() {
 
   useEffect(() => {
     if (router.isReady) {
-      mutateUpdateOrderStatus;
+      mutateUpdateOrderStatus();
     }
   }, [router.isReady]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-10 p-4">
+    <div className="flex flex-col items-center justify-center gap-10 p-4 ">
       <div className="flex flex-col items-center justify-center gap-10">
         <Image
           src="/images/general/logo.svg"

@@ -23,50 +23,55 @@ function DetailTransaction() {
         <div className="flex flex-col gap-2">
           <h4 className="font-bold">Order </h4>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <p className="text-sm font-semibold">Order ID :</p>
-            <Skeleton
-              isLoaded={!!dataTransaction?.orderId}
-              className="h-4 rounded-md"
-            >
-              <p className="text-sm">{dataTransaction?.orderId}</p>
-            </Skeleton>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <p className="text-sm font-semibold">Ticket :</p>
-            <Skeleton isLoaded={!!dataTicket?.name} className="h-4 rounded-md">
-              <p className="text-sm">{`${dataTicket?.name} (${convertIDR(dataTicket?.price)}) x ${dataTransaction?.quantity}`}</p>
-            </Skeleton>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <p className="text-sm font-semibold">Total :</p>
-            <Skeleton
-              isLoaded={!!dataTransaction?.total}
-              className="h-4 rounded-md"
-            >
-              <p className="text-sm">{convertIDR(dataTransaction?.total)} </p>
-            </Skeleton>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <p className="text-sm font-semibold">Status :</p>
-            <Skeleton
-              isLoaded={!!dataTransaction?.status}
-              className="h-4 rounded-md"
-            >
-              <Chip
-                variant="flat"
-                size="sm"
-                className=" capitalize"
-                color={
-                  dataTransaction?.status === "completed"
-                    ? "success"
-                    : dataTransaction?.status === "pending"
-                      ? "warning"
-                      : "danger"
-                }
+            <div>
+              <p className="text-sm font-semibold">Order ID :</p>
+              <Skeleton
+                isLoaded={!!dataTransaction?.orderId}
+                className="h-4 rounded-md"
               >
-                {dataTransaction?.status}
-              </Chip>
-            </Skeleton>
+                <p className="text-sm">{dataTransaction?.orderId}</p>
+              </Skeleton>
+            </div>
+            <div>
+              <p className="text-sm font-semibold">Ticket :</p>
+              <Skeleton
+                isLoaded={!!dataTicket?.name}
+                className="h-4 rounded-md"
+              >
+                <p className="text-sm">{`${dataTicket?.name} (${convertIDR(dataTicket?.price)}) x ${dataTransaction?.quantity}`}</p>
+              </Skeleton>
+            </div>
+            <div>
+              <p className="text-sm font-semibold">Total :</p>
+              <Skeleton
+                isLoaded={!!dataTransaction?.total}
+                className="h-4 rounded-md"
+              >
+                <p className="text-sm">{convertIDR(dataTransaction?.total)} </p>
+              </Skeleton>
+            </div>
+            <div>
+              <p className="text-sm font-semibold">Status :</p>
+              <Skeleton
+                isLoaded={!!dataTransaction?.status}
+                className="h-4 rounded-md"
+              >
+                <Chip
+                  variant="flat"
+                  size="sm"
+                  className=" capitalize"
+                  color={
+                    dataTransaction?.status === "completed"
+                      ? "success"
+                      : dataTransaction?.status === "pending"
+                        ? "warning"
+                        : "danger"
+                  }
+                >
+                  {dataTransaction?.status}
+                </Chip>
+              </Skeleton>
+            </div>
           </div>
         </div>
         {dataTransaction?.status === "completed" && (

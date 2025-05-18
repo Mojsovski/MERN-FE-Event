@@ -3,7 +3,7 @@ import Payment from "@/components/views/Payment";
 
 function PaymentPage() {
   return (
-    <AuthLayout>
+    <AuthLayout title="Acara | Payment">
       <Payment />
     </AuthLayout>
   );
