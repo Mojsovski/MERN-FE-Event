@@ -9,16 +9,7 @@ import {
 import useSecurityTab from "./useSecurityTab";
 import { Controller } from "react-hook-form";
 
-import { IProfile } from "@/types/Auth";
-
-interface IProps {
-  dataProfile: IProfile;
-  onUpdate: (data: IProfile) => void;
-  isPendingUpdate: boolean;
-  isSuccessUpdate: boolean;
-}
-
-const SecurityTab = (props: IProps) => {
+function SecurityTab() {
   const {
     controlUpdateSecurity,
     errorsUpdateSecurity,
@@ -107,6 +98,6 @@ const SecurityTab = (props: IProps) => {
       </CardBody>
     </Card>
   );
-};
+}
 
 export default SecurityTab;
